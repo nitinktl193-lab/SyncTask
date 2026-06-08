@@ -1,0 +1,179 @@
+
+.tasks-page {
+  padding: 30px;
+  min-height: 100vh;
+  background: #0f172a;
+  color: white;
+}
+
+.tasks-top {
+  margin-bottom: 30px;
+}
+
+.tasks-top h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.task-input input,
+.task-input select {
+  padding: 14px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  min-width: 180px;
+}
+
+.task-input button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #06b6d4;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.task-input button:hover {
+  transform: scale(1.05);
+}
+
+.search-box {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #1e293b;
+  color: white;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.task-card {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 20px;
+  transition: 0.3s;
+  border: 1px solid #334155;
+}
+
+.task-card h2 {
+  margin-bottom: 15px;
+}
+
+.purple {
+  background: #7c3aed;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.green {
+  background: #16a34a;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.priority {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+.date {
+  margin-top: 5px;
+  font-size: 15px;
+  color: #94a3b8;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.complete-btn {
+  background: #16a34a;
+}
+
+.edit-btn {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
+
+.empty {
+  text-align: center;
+  width: 100%;
+  padding: 40px;
+  background: #1e293b;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .tasks-page {
+    padding: 20px;
+  }
+
+  .tasks-top h1 {
+    font-size: 30px;
+  }
+
+  .task-input {
+    flex-direction: column;
+  }
+
+  .task-input input,
+  .task-input select,
+  .task-input button {
+    width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .complete-btn,
+  .edit-btn,
+  .delete-btn {
+    width: 100%;
+  }
+
+}
+
