@@ -1,9 +1,11 @@
 
+// ======================= Login.jsx =======================
+
+import API_URL from "../config";
+
 import "./Login.css";
 
-import {
-  useState
-} from "react";
+import { useState } from "react";
 
 import { toast } from "react-toastify";
 
@@ -16,98 +18,80 @@ import {
 
 function Login() {
 
-  const navigate =
-    useNavigate();
+  const navigate = useNavigate();
 
-  const [formData, setFormData] =
-    useState({
-      email: "",
-      password: "",
-    });
-
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   // INPUT
   const handleChange = (e) => {
 
     setFormData({
       ...formData,
-
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
+
   };
 
-
   // LOGIN
-  const handleSubmit =
-    async (e) => {
+  const handleSubmit = async (e) => {
 
-      e.preventDefault();
+    e.preventDefault();
 
-      try {
+    try {
 
-        const response =
-          await fetch(
-            "http://localhost:5000/api/login",
-            {
-              method: "POST",
+      const response = await fetch(
+        `${API_URL}/api/login`,
+        {
+          method: "POST",
 
-              headers: {
-                "Content-Type":
-                  "application/json",
-              },
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-              body: JSON.stringify(
-                formData
-              ),
-            }
-          );
-
-        const data =
-          await response.json();
-
-        if (response.ok) {
-
-          localStorage.setItem(
-            "token",
-            data.token
-          );
-
-          toast.success(
-            "Login Successful"
-          );
-
-          navigate("/dashboard");
-
-        } else {
-
-          toast.error(
-            data.message
-          );
-
+          body: JSON.stringify(formData),
         }
+      );
 
-      } catch (error) {
+      const data = await response.json();
 
-        console.log(error);
+      if (response.ok) {
 
-        toast.error(
-          "Server Error"
+        localStorage.setItem(
+          "token",
+          data.token
         );
 
-      }
-    };
+        toast.success(
+          "Login Successful"
+        );
 
+        navigate("/dashboard");
+
+      } else {
+
+        toast.error(data.message);
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+
+      toast.error("Server Error");
+
+    }
+  };
 
   return (
 
     <div className="login-container">
 
-      {/* Glow */}
       <div className="login-blur-one"></div>
 
       <div className="login-blur-two"></div>
-
 
       {/* LEFT */}
       <motion.div
@@ -133,9 +117,7 @@ function Login() {
           Welcome Back To
 
           <span>
-
             {" "}SyncTask
-
           </span>
 
         </h1>
@@ -148,7 +130,6 @@ function Login() {
         </p>
 
       </motion.div>
-
 
       {/* RIGHT */}
       <motion.div
@@ -170,88 +151,51 @@ function Login() {
       >
 
         <h2>
-
           Login
-
         </h2>
 
-        <form
-          onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
 
           <div className="input-box">
 
-            <label>
-
-              Email
-
-            </label>
+            <label>Email</label>
 
             <input
               type="email"
-
               name="email"
-
               placeholder="Enter email"
-
-              value={
-                formData.email
-              }
-
-              onChange={
-                handleChange
-              }
+              value={formData.email}
+              onChange={handleChange}
             />
 
           </div>
-
 
           <div className="input-box">
 
-            <label>
-
-              Password
-
-            </label>
+            <label>Password</label>
 
             <input
               type="password"
-
               name="password"
-
               placeholder="Enter password"
-
-              value={
-                formData.password
-              }
-
-              onChange={
-                handleChange
-              }
+              value={formData.password}
+              onChange={handleChange}
             />
 
           </div>
 
-
-          <button
-            type="submit"
-          >
-
+          <button type="submit">
             Login
-
           </button>
 
         </form>
-
 
         <p className="signup-text">
 
           Don’t have account?
 
           <Link to="/register">
-
             {" "}Register
-
           </Link>
 
         </p>
@@ -263,3 +207,4 @@ function Login() {
 }
 
 export default Login;
+

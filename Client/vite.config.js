@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-});
+// ================= src/config.js =================
+
+const API_URL = "https://synctask-4nef.onrender.com";
+
+export default API_URL;
+

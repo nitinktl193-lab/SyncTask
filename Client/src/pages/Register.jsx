@@ -1,3 +1,8 @@
+
+// ======================= Register.jsx =======================
+
+import API_URL from "../config";
+
 import "./Register.css";
 
 import { useState } from "react";
@@ -15,9 +20,7 @@ function Register() {
   const [formData, setFormData] = useState({
 
     name: "",
-
     email: "",
-
     password: "",
 
   });
@@ -28,7 +31,6 @@ function Register() {
     setFormData({
 
       ...formData,
-
       [e.target.name]: e.target.value,
 
     });
@@ -44,16 +46,14 @@ function Register() {
 
       const response = await fetch(
 
-        "http://localhost:5000/api/register",
+        `${API_URL}/api/register`,
 
         {
 
           method: "POST",
 
           headers: {
-
             "Content-Type": "application/json",
-
           },
 
           body: JSON.stringify(formData),
@@ -68,9 +68,7 @@ function Register() {
 
       if (response.ok) {
 
-        toast.success(
-          "Register Successful"
-        );
+        toast.success("Register Successful");
 
         navigate("/login");
 
@@ -84,9 +82,7 @@ function Register() {
 
       console.log(error);
 
-      toast.error(
-        "Server Error"
-      );
+      toast.error("Server Error");
 
     }
 
@@ -209,3 +205,4 @@ function Register() {
 }
 
 export default Register;
+

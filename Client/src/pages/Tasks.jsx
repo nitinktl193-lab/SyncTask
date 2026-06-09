@@ -1,4 +1,4 @@
-
+import API_URL from "../config";
 import "./Tasks.css";
 
 import {
@@ -42,7 +42,7 @@ function Tasks() {
       localStorage.getItem("token");
 
     fetch(
-      "http://localhost:5000/api/tasks",
+      "https://synctask-4nef.onrender.com/api/tasks",
       {
         headers: {
           Authorization: token,
@@ -87,7 +87,7 @@ function Tasks() {
     try {
 
       const res = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://synctask-4nef.onrender.com/api/tasks",
         {
           method: "POST",
 
@@ -151,7 +151,7 @@ function Tasks() {
       try {
 
         await fetch(
-          `http://localhost:5000/api/tasks/${id}`,
+         `https://synctask-4nef.onrender.com/api/tasks/${id}`,
           {
             method: "DELETE",
 
@@ -205,7 +205,7 @@ function Tasks() {
           : "Completed";
 
       const res = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+      `https://synctask-4nef.onrender.com/api/tasks/${id}`,
         {
           method: "PUT",
 
@@ -288,7 +288,7 @@ function Tasks() {
         );
 
       const res = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+       `https://synctask-4nef.onrender.com/api/tasks/${id}`,
         {
           method: "PUT",
 
