@@ -1,9 +1,11 @@
-
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -16,9 +18,7 @@ app.use(express.json());
 
 // ================= DATABASE =================
 mongoose
-  .connect(
-    "mongodb://127.0.0.1:27017/synctask"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
 
     console.log(
@@ -127,7 +127,7 @@ const authMiddleware = (
 
     const decoded = jwt.verify(
       token,
-      "synctasksecret"
+      process.env.JWT_SECRET
     );
 
     req.user = decoded;
@@ -148,7 +148,7 @@ const authMiddleware = (
 app.get("/", (req, res) => {
 
   res.send(
-    "SyncTask Backend Running"
+    "SyncTask Backend Running 🚀"
   );
 
 });
@@ -257,7 +257,7 @@ app.post(
         {
           id: user._id,
         },
-        "synctasksecret",
+        process.env.JWT_SECRET,
         {
           expiresIn: "7d",
         }
@@ -293,6 +293,8 @@ app.get(
         await Task.find({
           userId:
             req.user.id,
+        }).sort({
+          createdAt: -1,
         });
 
       res.json(tasks);
@@ -427,7 +429,8 @@ app.delete(
 
 
 // ================= SERVER =================
-const PORT = 5000;
+const PORT =
+  process.env.PORT || 5000;
 
 app.listen(PORT, () => {
 
@@ -436,4 +439,3 @@ app.listen(PORT, () => {
   );
 
 });
-
